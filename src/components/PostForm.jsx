@@ -16,6 +16,7 @@ export default function PostForm({ create }) {
 	return (
 		<form>
 			<MyInput
+				style={{ marginBottom: '5px' }}
 				value={post.title}
 				onChange={event => setPost({ ...post, title: event.target.value })}
 				type="text"
