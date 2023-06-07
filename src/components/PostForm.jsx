@@ -16,7 +16,7 @@ export default function PostForm({ create }) {
 	return (
 		<form>
 			<MyInput
-				style={{ marginBottom: '5px' }}
+				style={{ marginBottom: '10px' }}
 				value={post.title}
 				onChange={event => setPost({ ...post, title: event.target.value })}
 				type="text"
@@ -28,7 +28,7 @@ export default function PostForm({ create }) {
 				type="text"
 				placeholder="Description of the post"
 			/>
-			<MyButton style={{ marginTop: '10px' }} onClick={addNewPost}>Create a post</MyButton>
+			<MyButton style={{ display: 'block', margin: '15px auto 0px auto' }} onClick={addNewPost}>Create</MyButton>
 		</form>
 	)
 }
