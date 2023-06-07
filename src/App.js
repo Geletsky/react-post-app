@@ -7,6 +7,7 @@ import MyModal from "./components/UI/MyModal/MyModal";
 import MyButton from "./components/UI/button/MyButton";
 import { usePosts } from "./hooks/usePosts";
 import PostService from "./API/PostService";
+import Loader from "./components/UI/Loader/Loader";
 
 function App() {
 	const [posts, setPosts] = useState([]);
@@ -52,7 +53,7 @@ function App() {
 				setFilter={setFilter}
 			/>
 			{isPostsLoading
-				? <h1>LOADING....</h1>
+				? <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}><Loader /></div>
 				: <PostList remove={removePost} posts={sortedAndSearchedPosts} title={'Recent posts'} />
 			}
 		</div>
