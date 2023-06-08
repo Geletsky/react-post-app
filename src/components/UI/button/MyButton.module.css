@@ -2,12 +2,14 @@
 
 .myButton {
 	font-family: "Roboto", sans-serif;
-	padding: 12px 15px;
+	padding: 10px 45px;
 
-	color: #fff;
+	color: #202020;
+	font-weight: 700;
 	font-size: 14px;
 	cursor: pointer;
 
-	background: #3476e8;
-	border-radius: 2px;
+	background: transparent;
+	border: 1px solid #202020;
+	border-radius: 12px;
 }

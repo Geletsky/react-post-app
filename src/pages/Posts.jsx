@@ -16,13 +16,14 @@ function Posts() {
 	const [filter, setFilter] = useState({ sort: '', query: '' });
 	const [modal, setModal] = useState(false);
 	const [totalPages, setTotalPages] = useState(0);
-	const [limit, setLimit] = useState(10);
+	const [limit, setLimit] = useState(9);
 	const [page, setPage] = useState(1);
 	const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
 
 	const [fetchPosts, isPostsLoading, postError] = useFetching(async (limit, page) => {
 		const response = await PostService.getAll(limit, page);
 		setPosts(response.data);
+		console.log(response.data);
 		const totalCount = (response.headers['x-total-count']);
 		setTotalPages(getPageCount(totalCount, limit));
 	})
@@ -47,25 +48,31 @@ function Posts() {
 
 	return (
 		<div className="App">
-			<MyButton onClick={() => setModal(true)}>
-				Create a new post
-			</MyButton>
-			<MyModal visible={modal} setVisible={setModal}>
-				<h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Creating a post</h2>
-				<PostForm create={createPost} />
-			</MyModal>
-			<PostFilter
-				filter={filter}
-				setFilter={setFilter}
-			/>
-			{postError &&
-				<h1 style={{ textAlign: 'center', marginBottom: '20px', color: 'red' }}>An error occurred with the operation of the server</h1>
-			}
-			{isPostsLoading
-				? <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}><Loader /></div>
-				: <PostList remove={removePost} posts={sortedAndSearchedPosts} title={'Recent posts'} />
-			}
-			<Pagination page={page} changePage={changePage} totalPages={totalPages} />
+			<div className="wrapper">
+				<main className="main">
+					<section className="posts">
+						<div className="posts__container">
+							<MyModal visible={modal} setVisible={setModal}>
+								<h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Creating a post</h2>
+								<PostForm create={createPost} />
+							</MyModal>
+							<PostFilter
+								filter={filter}
+								setFilter={setFilter}
+							/>
+							{postError &&
+								<h1 style={{ textAlign: 'center', marginBottom: '20px', color: 'red' }}>An error occurred with the operation of the server</h1>
+							}
+							{isPostsLoading
+								? <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}><Loader /></div>
+								: <PostList remove={removePost} setModal={setModal} posts={sortedAndSearchedPosts} title={'Recent posts'} />
+							}
+							<Pagination page={page} changePage={changePage} totalPages={totalPages} />
+						</div>
+					</section>
+				</main>
+			</div>
+
 		</div>
 	);
 }
