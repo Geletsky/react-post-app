@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import MyButton from "./UI/button/MyButton";
 import MyInput from "./UI/input/MyInput";
+import image from '../img/01.jpg';
 
 export default function PostForm({ create }) {
-	const [post, setPost] = useState({ title: '', body: '' })
-
+	const [post, setPost] = useState({ title: '', body: '', photo: image })
 
 	function addNewPost(event) {
 		event.preventDefault();
 		const newPost = { ...post, id: Date.now() }
 		create(newPost)
-		setPost({ title: '', body: '' })
+		setPost({ title: '', body: '', photo: image })
 	}
 
 	return (

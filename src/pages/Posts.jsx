@@ -34,6 +34,8 @@ function Posts() {
 
 	function createPost(newPost) {
 		setPosts([...posts, newPost]);
+		console.log(newPost);
+		console.log(posts);
 		setModal(false)
 	}
 

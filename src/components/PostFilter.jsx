@@ -4,7 +4,7 @@ import MyInput from "./UI/input/MyInput";
 
 export default function PostFilter({ filter, setFilter }) {
 	return (
-		<div style={{ margin: '15px 0px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+		<div style={{ margin: '15px 0px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
 			<MyInput
 				value={filter.query}
 				onChange={event => setFilter({ ...filter, query: event.target.value })}
