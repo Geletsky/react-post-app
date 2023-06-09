@@ -113,7 +113,7 @@ body {
 }
 
 .post__text {
-  max-height: 50px;
+  max-height: 49px;
   font-size: 16px;
   color: #929292;
   overflow: hidden;
